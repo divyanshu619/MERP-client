@@ -5,11 +5,27 @@
             <span>{{ 'Dashboard' | translate }}</span>
         </a>
         <div class="nested-menu">
-            <a class="list-group-item" (click)="addExpandClass('pages')">
+            <a class="list-group-item" (click)="addExpandClass('patient')">
+                <i class="fa fa-plus"></i>&nbsp;
+                <span>{{ 'Patient' | translate }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'patient'">
+                <ul class="submenu">
+                    <li>
+                        <a routerLink="/patient/add-patient" [routerLinkActive]="['router-link-active']" href="javascript:void(0)">
+                            <i class="fa fa-monument"></i>&nbsp;
+                            <span>{{ 'Add Patient' | translate }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('admin')">
                 <i class="fa fa-plus"></i>&nbsp;
                 <span>{{ 'Admin' | translate }}</span>
             </a>
-            <li class="nested" [class.expand]="showMenu === 'pages'">
+            <li class="nested" [class.expand]="showMenu === 'admin'">
                 <ul class="submenu">
                     <li>
                         <a routerLink="/admin/add-user" [routerLinkActive]="['router-link-active']" href="javascript:void(0)">

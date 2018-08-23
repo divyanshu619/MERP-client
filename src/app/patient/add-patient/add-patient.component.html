@@ -1,38 +1,54 @@
 <div [@routerTransition]>
-    <app-page-header [heading]="'Add User'" [icon]="'fa-user-plus'"></app-page-header>
+    <app-page-header [heading]="'Add Patient'" [icon]="'fa-user-plus'"></app-page-header>
     <div class="row mt-5">
         <div class="col-sm-6 offset-sm-3">
-            <form (ngSubmit)="registerUser()" #userForm="ngForm">
+            <form (ngSubmit)="addPatient()" #userForm="ngForm">
                 <div class="row form-group">
                     <div class="col-sm-4">
-                        <label class="label" for="name">Name</label>
+                        <label class="label" for="firstName">First Name</label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" required [(ngModel)]="user.name" class="form-control" id="name" name="name">
+                        <input type="text" required [(ngModel)]="patient.firstName" class="form-control" id="firstName" name="firstName">
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-sm-4">
-                        <label class="label" for="username">Username</label>
+                        <label class="label" for="middleName">Middle Name</label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" required [(ngModel)]="user.username" class="form-control" id="username" name="username">
+                        <input type="text" [(ngModel)]="patient.middleName" class="form-control" id="middleName" name="middleName">
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-sm-4">
-                        <label class="label" for="password">Password</label>
+                        <label class="label" for="lastName">Last Name</label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" required [(ngModel)]="user.password" class="form-control" id="password" name="password">
+                        <input type="text" [(ngModel)]="patient.lastName" class="form-control" id="lastName" name="lastName">
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-sm-4">
-                        <label class="label" for="email">Email</label>
+                        <label class="label" for="dob">Date of Birth</label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="email" [(ngModel)]="user.email" class="form-control" id="email" name="email">
+                        <input type="date" required [(ngModel)]="patient.dob" class="form-control" id="dob" name="dob">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label class="label" for="age">Age</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="number" required [(ngModel)]="patient.age" class="form-control" id="age" name="age">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label class="label" for="emailId">Email</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="email" [(ngModel)]="patient.emailId" class="form-control" id="emailId" name="emailId">
                     </div>
                 </div>
                 <div class="row form-group">
@@ -40,33 +56,28 @@
                         <label class="label" for="mobileNo">Mobile No</label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" required [(ngModel)]="user.mobileNo" class="form-control" id="mobileNo" name="mobileNo">
+                        <input type="text" [(ngModel)]="patient.mobileNo" class="form-control" id="mobileNo" name="mobileNo">
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-sm-4">
-                        <label class="label" for="dateOfBirth">Date Of Birth</label>
+                        <label class="label" for="assignedDoctor">Assigned Doctor</label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="date" [(ngModel)]="user.dateOfBirth" class="form-control" id="dateOfBirth" name="dateOfBirth">
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-4">
-                        <label class="label" for="dateOfJoining">Date Of Joining</label>
-                    </div>
-                    <div class="col-sm-8">
-                        <input type="date" [(ngModel)]="user.dateOfJoining" class="form-control" id="dateOfJoining" name="dateOfJoining">
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-4">
-                        <label class="label" for="role">Role</label>
-                    </div>
-                    <div class="col-sm-8">
-                        <select required [(ngModel)]="user.role" class="form-control" id="role" name="role">
+                        <select required [(ngModel)]="patient.assignedDoctor" class="form-control" id="assignedDoctor" name="assignedDoctor">
                             <option disabled selected value="undefined">Select</option>
-                            <option *ngFor="let role of roles" [ngValue]="role">{{role.name | titlecase}}</option>
+                            <option *ngFor="let doctor of doctors" [ngValue]="doctor">{{doctor.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label class="label" for="receptionist">Receptionist</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <select required [(ngModel)]="patient.receptionist" class="form-control" id="receptionist" name="receptionist">
+                            <option disabled selected value="undefined">Select</option>
+                            <option *ngFor="let receptionist of receptionists" [ngValue]="receptionist">{{receptionist.name}}</option>
                         </select>
                     </div>
                 </div>
@@ -75,7 +86,7 @@
                         <label class="label" for="department">Department</label>
                     </div>
                     <div class="col-sm-8">
-                        <select required [(ngModel)]="user.department" class="form-control" id="department" name="department">
+                        <select required [(ngModel)]="patient.department" class="form-control" id="department" name="department">
                             <option disabled selected value="undefined">Select</option>
                             <option *ngFor="let department of departments" [ngValue]="department">{{department.name}}</option>
                         </select>

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { User } from '../../../data/admin';
+import { User, Role, Department } from '../../../data/admin';
 import { AdminService } from '../admin.service';
+import { RoleService } from '../../shared/services/role.service';
+import { DepartmentService } from '../../shared/services/department.service';
 
 @Component({
     selector: 'app-add-user',
@@ -11,28 +13,37 @@ import { AdminService } from '../admin.service';
     animations: [routerTransition()]
 })
 export class AddUserComponent implements OnInit {
-    userFormGroup: FormGroup;
-    constructor(private adminService: AdminService) {}
+    user: User = new User();
+    roles: Array<Role>;
+    departments: Array<Department>;
+    constructor(
+        private adminService: AdminService,
+        private roleService: RoleService,
+        private departmentService: DepartmentService
+    ) {}
     ngOnInit() {
-        this.creatUserFormGroup();
-    }
-    creatUserFormGroup() {
-        this.userFormGroup = new FormGroup({
-            name: new FormControl('', Validators.required),
-            username: new FormControl('', Validators.required),
-            password: new FormControl('', Validators.required),
-            email: new FormControl('', Validators.email),
-            mobileNo: new FormControl(''),
-            dateOfBirth: new FormControl(''),
-            dateOfJoining: new FormControl(''),
-            role: new FormControl('')
-        });
+        this.roleService.getRoles().subscribe(
+            (response: any) => {
+                this.roles = response;
+                console.log('ROLES', response);
+            },
+            (error: any) => {
+                console.log(error);
+            }
+        );
+        this.departmentService.getDepartments().subscribe(
+            (response: any) => {
+                this.departments = response;
+                console.log('DEPARTMENTS', response);
+            },
+            (error: any) => {
+                console.log(error);
+            }
+        );
     }
 
     registerUser() {
-        console.log(this.userFormGroup.value);
-        const user: User = <User>this.userFormGroup.value;
-        this.adminService.addUser(user).subscribe(
+        this.adminService.addUser(this.user).subscribe(
             data => {
                 alert('user added successfully !');
             },
@@ -41,6 +52,6 @@ export class AddUserComponent implements OnInit {
                 alert('error occured while adding user');
             }
         );
-        console.log(user);
+        console.log(this.user);
     }
 }

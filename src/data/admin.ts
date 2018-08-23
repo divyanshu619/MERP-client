@@ -9,6 +9,7 @@ export class User extends BaseModel {
     dateOfBirth;
     dateOfJoining;
     role: Role;
+    department: Department;
 }
 
 export class Role extends BaseModel {
@@ -25,4 +26,22 @@ export class Permission extends BaseModel {
 export class Credentials {
     username: string;
     password: string;
+}
+
+export class Department extends BaseModel {
+    name: string;
+    description: string;
+}
+
+export class Patient extends BaseModel {
+    firstName: string;
+    middleName: string;
+    lastName: string;
+    dob;
+    age: number;
+    emailId: string;
+    mobileNo: string;
+    assignedDoctor: User;
+    receptionist: User;
+    department: Department;
 }
