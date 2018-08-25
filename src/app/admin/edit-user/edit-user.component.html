@@ -1,0 +1,86 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Edit User'" [icon]="'fa-user-plus'"></app-page-header>
+    <div class="row mt-5">
+        <div class="col-sm-6 offset-sm-3">
+            <form (ngSubmit)="updateUser()" #userForm="ngForm">
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label class="label" for="username">Username</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <label class="label-info">{{user.username}}</label>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label class="label" for="name">Name</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" required [(ngModel)]="user.name" class="form-control" id="name" name="name">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label class="label" for="email">Email</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="email" [(ngModel)]="user.email" class="form-control" id="email" name="email">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label class="label" for="mobileNo">Mobile No</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" required [(ngModel)]="user.mobileNo" class="form-control" id="mobileNo" name="mobileNo">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label class="label" for="dateOfBirth">Date Of Birth</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="date" [(ngModel)]="user.dateOfBirth" class="form-control" id="dateOfBirth" name="dateOfBirth">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label class="label" for="dateOfJoining">Date Of Joining</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="date" [(ngModel)]="user.dateOfJoining" class="form-control" id="dateOfJoining" name="dateOfJoining">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label class="label" for="role">Role</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <select required [compareWith]="utils.compareWithId" [(ngModel)]="user.role" class="form-control" id="role" name="role">
+                            <option disabled selected value="undefined">Select</option>
+                            <option *ngFor="let role of roles" [ngValue]="role">{{role.name | titlecase}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label class="label" for="department">Department</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <select required [compareWith]="utils.compareWithId" [(ngModel)]="user.department" class="form-control" id="department" name="department">
+                            <option disabled selected value="undefined">Select</option>
+                            <option *ngFor="let department of departments" [ngValue]="department">{{department.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col text-center">
+
+                    </div>
+                </div>
+                <button type="reset" class="btn btn-primary">Reset</button>&nbsp;&nbsp;&nbsp;
+                <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-success">Save</button>
+            </form>
+        </div>
+    </div>
+</div>

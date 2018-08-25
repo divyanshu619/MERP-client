@@ -30,4 +30,34 @@ export class AdminService {
             headers: this.headers
         });
     }
+
+    getAllUsers() {
+        const url = this.baseUrl + '/get-users';
+        return this.http.get(url, {
+            headers: this.headers
+        });
+    }
+
+    getUserById(id: number) {
+        const url = this.baseUrl + '/get-user-by-id?id=' + id;
+        return this.http.get(url, {
+            headers: this.headers
+        });
+    }
+
+    updateUser(user: User) {
+        const url = this.baseUrl + '/update-user';
+        return this.http.post(url, user, {
+            headers: this.headers,
+            responseType: 'text'
+        });
+    }
+
+    removeUser(id: number) {
+        const url = this.baseUrl + '/remove-user?id=' + id;
+        return this.http.get(url, {
+            headers: this.headers,
+            responseType: 'text'
+        });
+    }
 }

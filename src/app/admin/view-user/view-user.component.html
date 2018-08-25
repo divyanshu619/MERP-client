@@ -1,0 +1,77 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'View User Details'" [icon]="'fa-user-plus'"></app-page-header>
+    <div class="row mt-5">
+        <div class="col-sm-6 offset-sm-3">
+            <div class="card">
+                <div class="card-header"><strong>Details for user</strong> - {{user?.name}}</div>
+                <div class="card-body">
+                    <div class="row form-group">
+                        <div class="col-sm-4">
+                            <label class="label" for="username">Username</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label>{{user?.username}}</label>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-4">
+                            <label class="label" for="name">Name</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label>{{user?.name}}</label>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-4">
+                            <label class="label" for="email">Email</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label>{{user?.email}}</label>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-4">
+                            <label class="label" for="mobileNo">Mobile No</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label>{{user?.mobileNo}}</label>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-4">
+                            <label class="label" for="dateOfBirth">Date Of Birth</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label>{{user?.dateOfBirth | date}}</label>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-4">
+                            <label class="label" for="dateOfJoining">Date Of Joining</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label>{{user?.dateOfJoining | date}}</label>
+                        </div>
+
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-4">
+                            <label class="label" for="role">Role</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label>{{user?.role?.name | titlecase}}</label>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-4">
+                            <label class="label" for="department">Department</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label>{{user?.department?.name}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

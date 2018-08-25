@@ -22,15 +22,15 @@
         </div>
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('admin')">
-                <i class="fa fa-plus"></i>&nbsp;
+                <i class="fa fa-cogs"></i>&nbsp;
                 <span>{{ 'Admin' | translate }}</span>
             </a>
             <li class="nested" [class.expand]="showMenu === 'admin'">
                 <ul class="submenu">
                     <li>
-                        <a routerLink="/admin/add-user" [routerLinkActive]="['router-link-active']" href="javascript:void(0)">
-                            <i class="fa fa-monument"></i>&nbsp;
-                            <span>{{ 'Add User' | translate }}</span>
+                        <a routerLink="/admin/view-users" [routerLinkActive]="['router-link-active']" href="javascript:void(0)">
+                            <i class="fa fa-users"></i>&nbsp;
+                            <span>{{ 'Users' | translate }}</span>
                         </a>
                     </li>
                 </ul>

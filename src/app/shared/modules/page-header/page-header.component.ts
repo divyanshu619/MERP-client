@@ -7,9 +7,15 @@ import { RouterModule } from '@angular/router';
     styleUrls: ['./page-header.component.scss']
 })
 export class PageHeaderComponent implements OnInit {
-    @Input() heading: string;
-    @Input() icon: string;
+    @Input()
+    heading: string;
+    @Input()
+    icon: string;
     constructor() {}
 
     ngOnInit() {}
+
+    goBack() {
+        window.history.back();
+    }
 }

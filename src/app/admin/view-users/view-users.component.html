@@ -1,0 +1,46 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'View All Users'" [icon]="'fa-eye'"></app-page-header>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    User List
+                    <a href="javascript:void(0)" routerLink="/admin/add-user" [routerLinkActive]="['router-link-active']" class="btn btn-outline-primary pull-right"><i class="fa fa-plus"></i>&nbsp;Add User</a>
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>Department</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users; index as rowIndex;">
+                                <td>{{rowIndex + 1}}</td>
+                                <td>{{user?.name}}</td>
+                                <td>{{user?.role?.name | titlecase}}</td>
+                                <td>{{user?.department?.name}}</td>
+                                <td class="text-center">
+                                    <a class="mx-3" routerLink="/admin/edit-user" [queryParams]="{id: user.id}" [routerLinkActive]="['router-link-active']" href="javascript:void(0)">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a class="mx-3" routerLink="/admin/view-user" [queryParams]="{id: user.id}" [routerLinkActive]="['router-link-active']" href="javascript:void(0)">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                    <a class="mx-3 text-danger" (click)="removeUser(user.id)" href="javascript:void(0)">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
