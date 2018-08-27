@@ -1,23 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import { User } from '../../../data/admin';
+import { AdminService } from '../../admin/admin.service';
+import { log } from 'util';
 
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss'],
-    animations: [routerTransition()]
+    animations: [routerTransition()],
+    providers: [AdminService]
 })
 export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
+    userDetails: User;
 
-    constructor() {
+    constructor(private adminService: AdminService) {
         this.sliders.push(
             {
                 imagePath: 'assets/images/slider1.jpg',
                 label: 'First slide label',
-                text:
-                    'Nulla vitae elit libero, a pharetra augue mollis interdum.'
+                text: 'Nulla vitae elit libero, a pharetra augue mollis interdum.'
             },
             {
                 imagePath: 'assets/images/slider2.jpg',
@@ -27,8 +31,7 @@ export class DashboardComponent implements OnInit {
             {
                 imagePath: 'assets/images/slider3.jpg',
                 label: 'Third slide label',
-                text:
-                    'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
+                text: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
             }
         );
 
@@ -52,7 +55,17 @@ export class DashboardComponent implements OnInit {
         );
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        const username = localStorage.getItem('username');
+        this.adminService.getUserDetailsByUsername(username).subscribe(
+            (response: any) => {
+                this.userDetails = response;
+            },
+            (error: any) => {
+                console.log(error);
+            }
+        );
+    }
 
     public closeAlert(alert: any) {
         const index: number = this.alerts.indexOf(alert);

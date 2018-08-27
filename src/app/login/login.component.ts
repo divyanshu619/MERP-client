@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
             data => {
                 localStorage.setItem('isLoggedin', 'true');
                 localStorage.setItem('authToken', data);
+                localStorage.setItem('username', this.creds.username);
                 this.router.navigateByUrl('/dashboard');
             },
             error => {

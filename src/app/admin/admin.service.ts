@@ -60,4 +60,11 @@ export class AdminService {
             responseType: 'text'
         });
     }
+
+    getUserDetailsByUsername(username: string) {
+        const url = this.baseUrl + '/get-user-details-by-username?username=' + username;
+        return this.http.get(url, {
+            headers: this.headers,
+        });
+    }
 }
